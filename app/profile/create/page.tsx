@@ -1,28 +1,47 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 
-const createProfileAction = async (formData:FormData) => {
-  'use server'
-  const firstName = formData.get("firstName") as string;
-  console.log("hello",firstName);
-}
+
+import { createProfileAction } from "@/actions/actions";
+import { SubmitButton } from "@/components/Form/Button";
+import FormContainer from "@/components/Form/FormContainer";
+import FormInput from "@/components/Form/FormInput";
+
+
+
+
+  
 
 
 const CreateProfile = () => {
   return (
     <section>
-      <h1 className="text-2xl font-semibold mb-8 capitalize">New user</h1>
-      <div className="border p-8 rounded-md max-w-lg">
-        <form action={createProfileAction}>
-          <div className="mb-2">
-            <Label htmlFor="firstName">First name</Label>
-            <Input name="firstName" type="text" />
-          </div>
-          <Button type="submit" size="lg">
-            Create Profile
-          </Button>
-        </form>
+      <h1 className="text-2xl font-semibold mb-8 capitalize">New user Informations</h1>
+      <div className="border p-8 rounded-md ">
+
+        <FormContainer action={createProfileAction}>
+
+          <div className="grid md:grid-cols-2 gap-4 mt-4">
+          <FormInput
+            name="firstName"
+            label="First Name"
+            type="text"
+            placeholder="Your name"
+            />
+          <FormInput
+            name="lastName"
+            label="Last Name"
+            type="text"
+            placeholder="Your lastname"
+            />
+           <FormInput
+            name="userName"
+            label="Username"
+            type="text"
+            placeholder="Your username"
+            />
+            </div>
+
+          <SubmitButton text="Create profile" size='lg' />
+      </FormContainer>
       </div>
     </section>
   );
